@@ -25,10 +25,12 @@ function createDOMCities()
 {
   for( const [key, value] of Object.entries(cities))
   {
-    console.log(key + ": " + value.name);
+    //console.log(key + ": " + value.name);
     var b = document.createElement('BUTTON');
     var textB = document.createTextNode(value.name);
     b.appendChild(textB);
+    b.className = "citybutton";
+    b.id = "b_" + key;
     b.style.position = "absolute";
     b.style.left = lon_to_x(value.lon) + "px";
     b.style.top = lat_to_y(value.lat) + "px";
@@ -36,4 +38,19 @@ function createDOMCities()
   }
 }
 
+function createDOMRoutes()
+{
+  for( const [index, r] of routes.entries())
+  {
+    console.log( r.cityE + "-" + r.cityW );
+    //get the location of each city
+    //calculate the distance in pixels
+    //create a div positioned absolute with a width equal to the distance.
+    //use trig to determine the angle to rotate the div.
+    //place div with x value equal to west city and y value half way between city y values.
+
+  }
+}
+//initialize
 createDOMCities();
+createDOMRoutes();

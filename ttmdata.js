@@ -5,6 +5,32 @@ function City(name, lat, lon)
   this.lon = lon;
 }
 
+/*
+  CityW is the western city,
+  CityE is the eastern city,
+  length is the number of train cars required.
+  Color1 is the color required,
+  Color2 is null if it is a single route, or the second car color.
+*/
+function Route(cityW, cityE, length, color1, color2)
+{
+  this.cityW = cityW;
+  this.cityE = cityE;
+  this.length = length;
+  this.color1 = color1;
+  this.color2 = color2;
+}
+
+var left_lon = -125;
+var right_lon = -69;
+var top_lat = 51;
+var bottom_lat = 23;
+
+var left_x = 10; //the left margin for the board
+var right_x = 810; //the right margin for the board
+var top_y = 10; //the top margin for the board
+var bottom_y = 510; //the bottom margin for the board
+
 var cities = {};
 cities['SEA'] = new City('Seattle', 47.45, -122.30);
 cities['PDX'] = new City('Portland', 45.58, -122.60);
@@ -16,9 +42,9 @@ cities['PHX'] = new City('Phoenix', 33.43, -112.01);
 cities['ELP'] = new City('El Paso', 31.80, -106.37);
 cities['SLC'] = new City('Salt Lake City', 40.78, -111.97);
 cities['HLN'] = new City('Helena', 46.60, -111.98);
-cities['YYC'] = new City('Calgary', 51.12, -114.01);
+//cities['YYC'] = new City('Calgary', 51.12, -114.01);//lowered from reality to match board.
+cities['YYC'] = new City('Calgary', 49.1, -114.01);
 cities['DEN'] = new City('Denver', 39.86, -104.67);
-
 cities['ABQ'] = new City('Santa Fe', 35.03, -106.60);
 cities['OKC'] = new City('Oklahoma City', 35.39, -97.60);
 cities['DFW'] = new City('Dallas', 32.90, -97.04);
@@ -41,16 +67,11 @@ cities['RDU'] = new City('Raleigh', 35.87, -78.78);
 cities['DCA'] = new City('Washington', 38.85, -77.04);
 cities['LGA'] = new City('New York', 40.77, -73.87);
 cities['YUL'] = new City('Montreal', 45.47, -73.74);
-
 cities['BOS'] = new City('Boston', 42.36, -71.00);
 cities['MIA'] = new City('Miami', 25.80, -80.29);
 
-var left_lon = -125;
-var right_lon = -69;
-var top_lat = 51;
-var bottom_lat = 23;
-
-var left_x = 10; //the left margin for the board
-var right_x = 810; //the right margin for the board
-var top_y = 10; //the top margin for the board
-var bottom_y = 510; //the bottom margin for the board
+var routes = [];
+routes.push( new Route('YVR', 'SEA', 1, "GREY", "GREY") );
+routes.push( new Route('SEA', 'PDX', 1, "GREY", "GREY") );
+routes.push( new Route('SEA', 'YYC', 4, "GREY", "GREY") );
+routes.push( new Route('YVR', 'YYC', 3, "GREY", "GREY") );
